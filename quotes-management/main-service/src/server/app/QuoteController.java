@@ -25,10 +25,11 @@ public class QuoteController extends Controller {
 
         StringBuilder savedQuotesHtml = new StringBuilder("<h2>Saved Quotes</h2>");
         for (Quote quote : Main.quotes) {
-            savedQuotesHtml.append("<p>").append(quote.quote).append(" -").append(quote.author).append("</p>");
+            savedQuotesHtml.append("<p>").append(quote.quote).append(" -").append(quote.author).append("</p><hr>");
         }
 
         String htmlBody = "" +
+                "<h1>Quotes</h1>" +
                 "<form method=\"POST\" action=\"/save-quote\">" +
                 "<label>Quote: </label><input name=\"quote\" type=\"text\"><br><br>" +
                 "<label>Author: </label><input name=\"author\" type=\"text\"><br><br>" +
@@ -36,7 +37,8 @@ public class QuoteController extends Controller {
                 "</form>" +
                 quoteOfTheDayHtml +
                 savedQuotesHtml;
-        String content = "<html><head><title>Odgovor servera</title></head>\n" + "<body>" + htmlBody + "</body></html>";
+        String content = "<html><head><title>Odgovor servera</title></head>\n" +
+                "<body style=\"text-align:center; padding-top:50px;\">" + htmlBody + "</body></html>";
 
         HtmlResponse htmlResponse = new HtmlResponse(content);
         return htmlResponse;
